@@ -2,6 +2,7 @@
 import 'package:finotemarket_app/src/screens/categories.screen.dart';
 import 'package:finotemarket_app/src/screens/details.screen.dart';
 import 'package:finotemarket_app/src/screens/home.screen.dart';
+import 'package:finotemarket_app/src/screens/introduction.screen.dart';
 import 'package:finotemarket_app/src/screens/orders.screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -11,21 +12,27 @@ appRoutes() => [
         name: '/home',
         page: () => const HomeScreen(),
         transition: Transition.cupertino,
-        transitionDuration: const Duration(milliseconds: 500),
+        transitionDuration: const Duration(milliseconds: 400),
+      ),
+      GetPage(
+        name: '/intro',
+        page: () => const WelcomeScreen(),
+        transition: Transition.cupertino,
+        transitionDuration: const Duration(milliseconds: 400),
       ),
       GetPage(
         name: '/details',
         page: () => const DetailsScreen(),
         middlewares: [MyMiddelware()],
         transition: Transition.cupertino,
-        transitionDuration: const Duration(milliseconds: 500),
+        transitionDuration: const Duration(milliseconds: 400),
       ),
       GetPage(
         name: '/orders',
         page: () => const OrdersScreen(),
         middlewares: [MyMiddelware()],
         transition: Transition.cupertino,
-        transitionDuration: const Duration(milliseconds: 500),
+        transitionDuration: const Duration(milliseconds: 400),
       ),
 
       GetPage(
@@ -33,7 +40,7 @@ appRoutes() => [
         page: () => const CategoriesScreen(),
         middlewares: [MyMiddelware()],
         transition: Transition.cupertino,
-        transitionDuration: const Duration(milliseconds: 500),
+        transitionDuration: const Duration(milliseconds: 400),
       ),
     ];
 

@@ -22,6 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+     c.getFirstLaunch();
     c.getThemeStatus();
     Future.delayed(const Duration(seconds: 3), () {
       // navigateUser();
@@ -48,17 +49,30 @@ class _SplashScreenState extends State<SplashScreen> {
   void checkSignedIn() async {
     // AuthProvider authProvider = context.read<AuthProvider>();
     // bool isLoggedIn = await authProvider.isLoggedIn();
-    bool isLoggedIn = true;
+    // bool isLoggedIn = true;
+    // bool isFirstTimeLaunch = false;
+    bool isFirstTimeLaunch = c.isFirstTimeLaunch!.value;
 
-    if(isLoggedIn){
-      if(kDebugMode){
-        print("logged in");
-      }
-      // ignore: use_build_context_synchronously
-      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const HomeScreen()));
-    Get.offAllNamed('/home');
-    return;
+    // isFirstTimeLaunch ? c.saveFirstTimeLaunch():'';
+    // String route = isFirstTimeLaunch?'/intro':'/home';
+    if(isFirstTimeLaunch) {
+      Get.offAllNamed('/intro');
+    } else {
+      Get.offAllNamed('/home');
     }
+
+
+    // if(isLoggedIn){
+    //   if(kDebugMode){
+    //     print("logged in");
+    //   }
+    //   // ignore: use_build_context_synchronously
+    //   // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const HomeScreen()));
+    // // Get.offAllNamed('/home');
+    // Get.offAllNamed('/intro');
+
+    // return;
+    // }
   }
   @override
   Widget build(BuildContext context) {

@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductCard extends StatelessWidget {
-  final String ?img;
-  const ProductCard({this.img,super.key});
+  final String img;
+  final int index;
+
+  const ProductCard({ required this.img,required this.index,super.key});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed('/details',arguments: {'image':img});
+        Get.toNamed('/details',arguments: {'image':img,"index":index});
       },
       child: Container(
                       // width: MediaQuery.of(context).size.width,
