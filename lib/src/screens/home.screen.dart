@@ -112,25 +112,17 @@ class _HomeScreenState extends State<HomeScreen> {
               // const SizedBox(
               //   height: 7,
               // ),
-              Container(
-                // decoration:  BoxDecoration(
-                //       // color: Colors.amber,
-                // // color: Theme.of(context).primaryColor,
-                //       borderRadius: BorderRadius.circular(3)
-                //       ),
-                // margin: const EdgeInsets.only(left: 3,right: 3),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text("ፍኖተMarket",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w600,fontFamily: 'LosAngeleno'),),
-                    ),
-                    IconButton(
-                        icon: const Icon(Icons.sunny),
-                        onPressed: c.toogleThemeMode),
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("ፍኖተMarket",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w600,fontFamily: 'LosAngeleno'),),
+                  ),
+                  IconButton(
+                      icon: const Icon(Icons.sunny),
+                      onPressed: c.toogleThemeMode),
+                ],
               ),
               SearchBarAnimation(
                 textEditingController: TextEditingController(),
@@ -148,10 +140,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
               Container(
-                  padding: const EdgeInsets.fromLTRB(0, 30, 0, 15),
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 15),
+                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 5),
+
                   width: MediaQuery.of(context).size.width,
                   height: 220,
-                  color: const Color.fromARGB(255, 233, 233, 228),
+                  // color: const Color.fromARGB(255, 233, 233, 228),
+                  decoration: BoxDecoration(
+                    border: Border(top: BorderSide(width: 3,color: Theme.of(context).highlightColor,),bottom: BorderSide(width: 3,color: Theme.of(context).highlightColor,))
+                  ),
                   child: PageView.builder(
                       physics: const BouncingScrollPhysics(
                           decelerationRate: ScrollDecelerationRate.fast),

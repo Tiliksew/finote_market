@@ -10,17 +10,35 @@ class DetailsScreen extends StatefulWidget {
   State<DetailsScreen> createState() => _DetailsScreenState();
 }
 
-class _DetailsScreenState extends State<DetailsScreen> {
+class _DetailsScreenState extends State<DetailsScreen>  with SingleTickerProviderStateMixin{
+
+    late AnimationController controller;
+    late Animation<double> opacityAnimation;
+    int i = 0;
+
   final String img = Get.arguments['image'];
   final int index = Get.arguments['index'];
   final ProductController pc = Get.put(ProductController());
+
+@override
+void initState() {
+    super.initState();
+    controller =
+        BottomSheet.createAnimationController(this);
+    controller.duration = const Duration(milliseconds: 350);
+     opacityAnimation = CurvedAnimation(
+        parent: Tween<double>(begin: 1, end: 0).animate(controller),
+        curve: Curves.easeInOutExpo);
+    // controller.animationBehavior = 
+  }
+
   @override
   Widget build(BuildContext context) {
     Product selectedProduct = pc.products[index];
     return Scaffold(
         body: SafeArea(
             child: Column(
-      // mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       // crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         // const Text('Details Screen'),
@@ -79,6 +97,40 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   selectedProduct.description,
                   style: const TextStyle(fontSize: 20),
                 ),
+                FilledButton(
+                    onPressed: () {
+                      showModalBottomSheet(
+                        useSafeArea: true,
+                        shape: OutlineInputBorder(borderSide: BorderSide.none,borderRadius: BorderRadius.circular(15)),
+                          context: context,
+                          transitionAnimationController: controller,
+                          builder: (context) {
+                            return Container(
+                              
+                              decoration: BoxDecoration(
+                                // color: Colors.amber,s
+                                  borderRadius: BorderRadius.circular(20)),
+                              // child: Wrap(
+                              //   children: const [
+                              //     ListTile(
+                              //       leading: Icon(Icons.share),
+                              //       title: Text('Share'),
+                              //     ),
+                              //     ListTile(
+                              //       leading: Icon(Icons.copy),
+                              //       title: Text('Copy Link'),
+                              //     ),
+                              //     ListTile(
+                              //       leading: Icon(Icons.edit),
+                              //       title: Text('Edit'),
+                              //     ),
+
+                              //   ],
+                              // ),
+                            );
+                          });
+                    },
+                    child: const Text("Order Now"))
               ],
             ),
           ),

@@ -21,12 +21,10 @@ class ThemeController extends GetxController {
     pref.setBool('theme', isLightTheme.value);
   }
   saveFirstTimeLaunch() async {
-    print('daving ');
     SharedPreferences pref = await _prefs;
     var isFirst= _prefs.then((SharedPreferences prefs) {
       return prefs.getBool('first') ?? true;
     }).obs;
-    print('first $isFirst');
     pref.setBool('first', false);
     isFirstTimeLaunch?.value = false;
   }

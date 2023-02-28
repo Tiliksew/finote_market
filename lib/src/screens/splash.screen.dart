@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (isLoggedIn) {
       // &&  FirebaseAuth.instance.currentUser.reload() != null
       Timer(
-        const Duration(seconds: 10),
+        const Duration(seconds: 6),
         () =>  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const HomeScreen()))
       );
     } 
@@ -77,26 +77,28 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor:Theme.of(context).primaryColor,
+        backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text("Welcome to ፍኖተMarket",style: TextStyle(
+          children: const [
+            Text("Welcome to ፍኖተMarket",style: TextStyle(
+              color: Colors.black,
                   fontWeight: FontWeight.bold, fontSize: Sizes.dimen_18),
             ),
-             Image.asset(
-              'assets/images/women5.png',
-              width: 300,
-              height: 300,
-            ),
-              const SizedBox(
+            //  Image.asset(
+            //   'assets/images/women5.png',
+            //   width: 300,
+            //   height: 300,
+            // ),
+            Icon(Icons.production_quantity_limits,color: Colors.black,),
+              SizedBox(
               height: 20,
             ),
             
-             const CircularProgressIndicator(
-              color: Colors.white,
-            ),
+            //  CircularProgressIndicator(
+            //   color: Colors.white,
+            // ),
           ],
         ),
       ),
