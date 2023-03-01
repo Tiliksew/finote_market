@@ -6,6 +6,9 @@ import 'package:finotemarket_app/src/widgets/product_card.dart';
 import 'package:finotemarket_app/src/widgets/pageview.dart';
 import 'package:finotemarket_app/src/constants/images.constants.dart';
 import 'package:searchbar_animation/searchbar_animation.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:finotemarket_app/src/screens/categories.screen.dart';
+import 'package:finotemarket_app/src/screens/orders.screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,9 +25,19 @@ class _HomeScreenState extends State<HomeScreen> {
 
   PageController page = PageController(initialPage: 0, viewportFraction: 0.9);
 
-  void _incrementCounter() {
-    setState(() {
-    });
+  void _makeCall() async {
+    final Uri smsLaunchUri = Uri(
+      scheme: 'sms',
+      path: '0118 999 881 999 119 7253',
+      queryParameters: <String, String>{
+        'body': Uri.encodeComponent('Example Subject & Symbols are allowed!'),
+      },
+    );
+    if (!await launchUrl(smsLaunchUri)) {
+      throw Exception('Could not launch');
+    }
+    // setState(() {
+    // });
   }
 
   @override
@@ -69,9 +82,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
-          onPressed: _incrementCounter,
+          onPressed: _makeCall,
           // onPressed: showBottom,
           backgroundColor: Theme.of(context).primaryColor,
           tooltip: 'Call',
@@ -104,81 +117,97 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              // const SizedBox(
-              //   height: 7,
-              // ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("ፍኖተMarket",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w600,fontFamily: 'LosAngeleno'),),
-                  ),
-                  IconButton(
-                      icon: const Icon(Icons.sunny),
-                      onPressed: c.toogleThemeMode),
-                ],
-              ),
-              SearchBarAnimation(
-                textEditingController: TextEditingController(),
-                isOriginalAnimation: false,
-                buttonBorderColour: Colors.black45,
-                buttonWidget: const Icon(Icons.search),
-                secondaryButtonWidget: const Icon(Icons.search),
-                trailingWidget: const Icon(Icons.search),
-                enableKeyboardFocus: true,
-                // onFieldSubmitted: (String value){
-                //     debugPrint('onFieldSubmitted value $value');
-                // },
-                onChanged: (String value) {
-                  debugPrint('onFieldSubmitted value $value');
-                },
-              ),
-              Container(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 15),
-                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 5),
-
-                  width: MediaQuery.of(context).size.width,
-                  height: 220,
-                  // color: const Color.fromARGB(255, 233, 233, 228),
-                  decoration: BoxDecoration(
-                    border: Border(top: BorderSide(width: 3,color: Theme.of(context).highlightColor,),bottom: BorderSide(width: 3,color: Theme.of(context).highlightColor,))
-                  ),
-                  child: PageView.builder(
-                      physics: const BouncingScrollPhysics(
-                          decelerationRate: ScrollDecelerationRate.fast),
-                      itemCount: 5,
-                      controller: page,
-                      itemBuilder: (_, int i) => PageViewElement(
-                          img: ImageConst.exclusiveProducts[i]))),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(15, 10, 5, 20),
-                child: Text(
-                  "Discover Anything",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+        body: _selectedIndex == 0
+            ? SafeArea(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    // const SizedBox(
+                    //   height: 7,
+                    // ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            "ፍኖተMarket",
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: 'LosAngeleno'),
+                          ),
+                        ),
+                        IconButton(
+                            icon: const Icon(Icons.sunny),
+                            onPressed: c.toogleThemeMode),
+                      ],
+                    ),
+                    SearchBarAnimation(
+                      textEditingController: TextEditingController(),
+                      isOriginalAnimation: false,
+                      buttonBorderColour: Colors.black45,
+                      buttonWidget: const Icon(Icons.search),
+                      secondaryButtonWidget: const Icon(Icons.search),
+                      trailingWidget: const Icon(Icons.search),
+                      enableKeyboardFocus: true,
+                      // onFieldSubmitted: (String value){
+                      //     debugPrint('onFieldSubmitted value $value');
+                      // },
+                      onChanged: (String value) {
+                        debugPrint('onFieldSubmitted value $value');
+                      },
+                    ),
+                    Container(
+                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 15),
+                        margin: const EdgeInsets.fromLTRB(0, 20, 0, 5),
+                        width: MediaQuery.of(context).size.width,
+                        height: 220,
+                        // color: const Color.fromARGB(255, 233, 233, 228),
+                        decoration: BoxDecoration(
+                            border: Border(
+                                top: BorderSide(
+                                  width: 3,
+                                  color: Theme.of(context).focusColor,
+                                ),
+                                bottom: BorderSide(
+                                  width: 3,
+                                  color: Theme.of(context).focusColor,
+                                ))),
+                        child: PageView.builder(
+                            physics: const BouncingScrollPhysics(
+                                decelerationRate: ScrollDecelerationRate.fast),
+                            itemCount: 5,
+                            controller: page,
+                            itemBuilder: (_, int i) => PageViewElement(
+                                img: ImageConst.exclusiveProducts[i]))),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(15, 10, 5, 20),
+                      child: Text(
+                        "Discover Anything",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Expanded(
+                      child: GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: 3,
+                                  crossAxisSpacing: 3),
+                          itemCount: pc.products.length,
+                          itemBuilder: (context, int i) => ProductCard(
+                                img: pc.products[i].images[0],
+                                index: i,
+                              )),
+                    )
+                  ],
                 ),
-              ),
-              Expanded(
-                child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 3,
-                            crossAxisSpacing: 3),
-                    itemCount: pc.products.length,
-                    itemBuilder: (context, int i) => ProductCard(
-                          img: pc.products[i].images[0],
-                          index: i,
-                        )),
               )
-            
-            ],
-          ),
-        ));
+            : _selectedIndex == 1
+                ? const CategoriesScreen()
+                : const OrdersScreen());
   }
 }

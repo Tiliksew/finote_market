@@ -1,5 +1,5 @@
 class ProductsListClass {
- static const ProductsList = '''
+ static const productsList = '''
   [
     {"title": "Adidas","price": "40","description": "Nice Addidas Product With Cheapest Price","category": "40","isActive": true,"images": ["bag1"]},
     {"title": "Adidas","price": "40","description": "Nice Addidas Product With Cheapest Price","category": "40","isActive": true,"images": ["flower3"]},

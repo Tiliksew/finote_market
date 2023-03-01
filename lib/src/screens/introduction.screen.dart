@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:finotemarket_app/src/controllers/theme.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,7 +39,7 @@ void initState() {
     
   },
   baseBtnStyle: TextButton.styleFrom(
-    backgroundColor: Colors.grey.shade200,
+    // backgroundColor: Colors.grey.shade200,
   ),  
   skipStyle: TextButton.styleFrom(primary: Colors.red),  
   doneStyle: TextButton.styleFrom(primary: Colors.green),  

@@ -49,13 +49,13 @@ void initState() {
               height: MediaQuery.of(context).size.height / 2.2,
               padding: const EdgeInsets.all(38),
               decoration: BoxDecoration(
-                boxShadow: const [
-                  BoxShadow(
-                      color: Color.fromARGB(255, 219, 194, 192),
-                      blurRadius: 2,
-                      offset: Offset(4, 5))
-                ],
-                color: Theme.of(context).primaryColor,
+                // boxShadow: const [
+                //   BoxShadow(
+                //       // color: Color.fromARGB(255, 6, 88, 165),
+                //       blurRadius: 2,
+                //       offset: Offset(4, 5))
+                // ],
+                // color: Theme.of(context).primaryColor,
                 image: DecorationImage(
                   scale: 0.6,
                   // image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
@@ -76,7 +76,7 @@ void initState() {
                 },
                 icon: const Icon(
                   Icons.arrow_back,
-                  color: Colors.white,
+                  // color: Colors.white,
                 ))
           ],
         ),

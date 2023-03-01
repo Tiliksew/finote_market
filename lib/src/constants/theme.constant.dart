@@ -4,17 +4,20 @@ class CustomThemeData {
   static final ThemeData darkTheme = ThemeData(
     // accentColor: Colors.red,
     fontFamily: 'LosAngeleno',
+    highlightColor: const Color.fromARGB(255, 80, 78, 78),
     brightness: Brightness.dark,
     primaryColor:const Color(0xff009FB7),
     buttonTheme: const  ButtonThemeData(
       buttonColor: Color(0xff009FB7),
       disabledColor: Colors.grey,
-    ));
+    )
+    );
 
 static final ThemeData lightTheme = ThemeData(
     // accentColor: Colors.pink,
     brightness: Brightness.light,
     fontFamily: 'LosAngeleno',
+   highlightColor: const Color(0x11A5ECA8),
     primaryColor: const Color(0xff009FB7),
     buttonTheme: const ButtonThemeData(
       buttonColor:  Color(0xff009FB7),

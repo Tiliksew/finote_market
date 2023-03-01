@@ -1,4 +1,5 @@
 import 'package:finotemarket_app/src/constants/theme.constant.dart';
+import 'package:finotemarket_app/src/screens/introduction.screen.dart';
 import 'package:finotemarket_app/src/screens/splash.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,6 +22,8 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       // home: const HomeScreen()
       home: const SplashScreen(),
+      // home: const WelcomeScreen(),
+
     );
   }
 }
