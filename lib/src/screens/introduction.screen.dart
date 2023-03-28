@@ -19,19 +19,26 @@ ThemeController c = Get.put(ThemeController());
 @override
 void initState() {
     super.initState();
-    c.saveFirstTimeLaunch();
+    // c.saveFirstTimeLaunch();
   }
   
   @override
   Widget build(BuildContext context) {
     return IntroductionScreen(
+      animationDuration: 250,
+      controlsPadding: const EdgeInsets.all(5),
+      autoScrollDuration: 8000,
+      isTopSafeArea: true,
+      isBottomSafeArea: true,
+      globalBackgroundColor: Colors.white,
   pages: IntroPages.pages,
   showSkipButton: true,
   skip: const Text("Skip"),
   next: const Text("Next"),
-  done: const Text("Done"),
+  done: const Text("Get started"),
   onDone: () {
     // When done button is press
+    c.saveFirstTimeLaunch();
     Get.offAllNamed('/home');
   },
   onSkip: () {
@@ -43,7 +50,7 @@ void initState() {
   ),  
   skipStyle: TextButton.styleFrom(primary: Colors.red),  
   doneStyle: TextButton.styleFrom(primary: Colors.green),  
-  nextStyle: TextButton.styleFrom(primary: Colors.blue),
+  nextStyle: TextButton.styleFrom(primary: Theme.of(context).primaryColor),
 );
   }
 }

@@ -1,7 +1,7 @@
 class ProductsListClass {
  static const productsList = '''
   [
-    {"title": "Adidas","price": "40","description": "Nice Addidas Product With Cheapest Price","category": "40","isActive": true,"images": ["bag1"]},
+    {"title": "Wireless Headphones","price": "40","description": "Experience high-quality sound like never before. Our Wireless Headphones deliver an immersive audio experience with deep bass and clear treble.","category": "40","isActive": true,"images": ["bag1"]},
     {"title": "Adidas","price": "40","description": "Nice Addidas Product With Cheapest Price","category": "40","isActive": true,"images": ["flower3"]},
     {"title": "Adidas","price": "40","description": "Nice Addidas Product With Cheapest Price","category": "40","isActive": true,"images": ["men6"]},
     {"title": "Adidas","price": "40","description": "Nice Addidas Product With Cheapest Price","category": "40","isActive": true,"images": ["women4"]},

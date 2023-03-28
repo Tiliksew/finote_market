@@ -1,19 +1,24 @@
-import 'package:finotemarket_app/src/controllers/product.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductCard extends StatelessWidget {
   final String img;
+  final String title;
+  final String price;
+  final String description;
+
   final int index;
 
-  ProductCard({required this.img, required this.index, super.key});
+  const ProductCard({required this.img, required this.title,required this.price,required this.index,required this.description, super.key});
 
-  final ProductController pc = Get.put(ProductController());
+  // final ProductController pc = Get.put(ProductController());
+  // final ProductsController pc = Get.put(ProductsController());
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed('/details', arguments: {'image': img, "index": index});
+        Get.toNamed('/details', arguments: {'image': img,"title":title, "index": index,"price": price,"description": description});
       },
       child: DecoratedBox(
         decoration: BoxDecoration(
@@ -31,8 +36,8 @@ class ProductCard extends StatelessWidget {
                 // color: Colors.amberAccent,
                 image: DecorationImage(
                   scale: 0.6,
-                  // image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
-                  image: AssetImage('assets/images/$img.png'),
+                  image: NetworkImage(img),
+                  // image: AssetImage('assets/images/$img.png'),
                   fit: BoxFit.scaleDown,
                 ),
                 // border: Border.all(
@@ -46,13 +51,17 @@ class ProductCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text('${pc.products[index].price} Birr'),
-                  FilledButton(
-                    style: FilledButton.styleFrom(backgroundColor: Theme.of(context).primaryColor),
-                    onPressed: () {
-                    },
-                    child: const Text("Order"),
-                  )
+                  // SizedBox(height: 50,),
+                  Text(title,style: const TextStyle(fontSize: 12),),
+                  Text('${price}Br'),
+                  
+
+                  // FilledButton(
+                  //   style: FilledButton.styleFrom(backgroundColor: Theme.of(context).primaryColor),
+                  //   onPressed: () {
+                  //   },
+                  //   child: const Text("Order"),
+                  // )
                 ],
               ),
             )

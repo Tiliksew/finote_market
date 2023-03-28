@@ -1,5 +1,6 @@
-import 'package:finotemarket_app/src/controllers/product.controller.dart';
-import 'package:finotemarket_app/src/models/product.model.dart';
+import 'package:finotemarket_app/src/controllers/products.controller.dart';
+import 'package:finotemarket_app/src/widgets/order_form.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +19,11 @@ class _DetailsScreenState extends State<DetailsScreen>  with SingleTickerProvide
 
   final String img = Get.arguments['image'];
   final int index = Get.arguments['index'];
-  final ProductController pc = Get.put(ProductController());
+  final String title = Get.arguments['title'];
+  final String price = Get.arguments['price'];
+  final String description= Get.arguments['description'];
+
+  final ProductsController pc = Get.put(ProductsController());
 
 @override
 void initState() {
@@ -34,7 +39,7 @@ void initState() {
 
   @override
   Widget build(BuildContext context) {
-    Product selectedProduct = pc.products[index];
+    // Product selectedProduct = pc.products[index];
     return Scaffold(
         body: SafeArea(
             child: Column(
@@ -58,8 +63,8 @@ void initState() {
                 // color: Theme.of(context).primaryColor,
                 image: DecorationImage(
                   scale: 0.6,
-                  // image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
-                  image: AssetImage('assets/images/$img.png'),
+                  image: NetworkImage(img),
+                  // image: AssetImage('assets/images/$img.png'),
                   fit: BoxFit.scaleDown,
                 ),
                 // border: Border.all(
@@ -86,7 +91,7 @@ void initState() {
             child: Column(
               children: [
                 Text(
-                  '${selectedProduct.title} - ${selectedProduct.price}ETB',
+                  '$title - ${price}ETB',
                   style: const TextStyle(fontSize: 20),
                 ),
                 const Text(
@@ -94,7 +99,7 @@ void initState() {
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  selectedProduct.description,
+                  description,
                   style: const TextStyle(fontSize: 20),
                 ),
                 FilledButton(
@@ -105,28 +110,33 @@ void initState() {
                           context: context,
                           transitionAnimationController: controller,
                           builder: (context) {
-                            return Container(
-                              
-                              decoration: BoxDecoration(
-                                // color: Colors.amber,s
-                                  borderRadius: BorderRadius.circular(20)),
-                              // child: Wrap(
-                              //   children: const [
-                              //     ListTile(
-                              //       leading: Icon(Icons.share),
-                              //       title: Text('Share'),
-                              //     ),
-                              //     ListTile(
-                              //       leading: Icon(Icons.copy),
-                              //       title: Text('Copy Link'),
-                              //     ),
-                              //     ListTile(
-                              //       leading: Icon(Icons.edit),
-                              //       title: Text('Edit'),
-                              //     ),
+                            return ListView(
+                              children: [
+                                Container(
+                                  
+                                  decoration: BoxDecoration(
+                                    // color: Colors.amber,s
+                                      borderRadius: BorderRadius.circular(20)),
+                                  // child: Wrap(
+                                  //   children: const [
+                                  //     ListTile(
+                                  //       leading: Icon(Icons.share),
+                                  //       title: Text('Share'),
+                                  //     ),
+                                  //     ListTile(
+                                  //       leading: Icon(Icons.copy),
+                                  //       title: Text('Copy Link'),
+                                  //     ),
+                                  //     ListTile(
+                                  //       leading: Icon(Icons.edit),
+                                  //       title: Text('Edit'),
+                                  //     ),
 
-                              //   ],
-                              // ),
+                                  //   ],
+                                  // ),
+                                  child: const OrderForm(),
+                                ),
+                              ],
                             );
                           });
                     },
